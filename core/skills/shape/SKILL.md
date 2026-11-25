@@ -101,6 +101,6 @@ Write `docs/designs/<slug>-shape/pitch.md`:
 - On go or go smaller, hand off to `ux-design`, which designs the detailed flows for the chosen option only.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: **Stage finished** for the saga, stage `shape`, linking `pitch.md`. On a no-go, add a Note to the saga with the verdict instead of a trail step.

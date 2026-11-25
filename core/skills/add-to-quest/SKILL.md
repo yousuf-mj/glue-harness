@@ -1,11 +1,11 @@
 ---
 name: "add-to-quest"
-description: "Tell Glue, the quest journal, what just happened: a stage finished, a PR opened or merged, a deploy, or a note from a chat. Use on 'add to quest', 'update the journal', or at a skill's hand-off."
+description: "Tell Glue what just happened: a stage finished, a PR opened or merged, a deploy, or a note from a chat. Use on 'add to quest', 'update Glue', or at a skill's hand-off."
 ---
 
 # Add to quest
 
-Glue is Yousuf and Christine's shared quest journal: https://claude.ai/artifact/FSVjt7tWMt8kusiq46Kv7y
+Glue is Yousuf and Christine's shared quest tracker: https://claude.ai/artifact/FSVjt7tWMt8kusiq46Kv7y
 Its long ID (slug) is `74ef3f29-ee4e-4a18-9987-c80792cc1b88`.
 
 ## 0. Pick the tool this session has

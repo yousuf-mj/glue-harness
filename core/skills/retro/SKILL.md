@@ -50,6 +50,6 @@ Show the user the exact proposed edit for each skill file. Apply only what they 
 Append a short summary to `docs/retros/<YYYY-MM-DD>-<round>.md`: what went well, gaps, root causes, and the changes applied. Land it on main in a docs-only PR.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: a **Note** on each saga the round covered, with the retro file's path and the changes applied. Quests that shipped and deployed move to `done`.

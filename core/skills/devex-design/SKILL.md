@@ -63,7 +63,7 @@ Run after the build, against the real thing.
 4. Report the gaps, most severe first: broken docs, unhelpful errors, missing defaults, confusing names. Triage with the user and route fixes through write-spec and build-from-spec.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Plan mode: **Stage finished** for the saga, stage `ui-design` (Glue's trail stage for devex too), linking the devex contract.
 - Audit mode: a **Note** on the saga with the top gaps found.

@@ -76,7 +76,7 @@ If `.agents/tracker.md` exists, create one Notion ticket with Name, Status, Owne
 Then run `build-from-spec` on the spec's path on main. It can run in this session, on a fresh branch from main.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - When the draft lands on main: create or link one quest for the spec, state `planning`, and write `Glue quest: <id>` on the spec's first lines.
 - When the approval lands on main: move the quest to `ready`, `readyFor: build`, with the spec's path on main as a scroll. Do this before handing to `build-from-spec`.

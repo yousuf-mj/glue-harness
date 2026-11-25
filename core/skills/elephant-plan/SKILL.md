@@ -57,6 +57,6 @@ Rules for the doc:
 Tell the user the design is ready and the next step is `goldfish-review` on it, then `write-spec`. Do not write specs or code.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: a **Note** on the saga: the design doc's path and that it is `Status: draft`, waiting for review then `write-spec`. Set the saga's `readyFor` to `spec`.

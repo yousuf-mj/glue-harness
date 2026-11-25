@@ -57,6 +57,6 @@ Use the mirror, or one filtered query. Summarise in plain, non-technical languag
 If dates slip or scope changes, show the options (cut scope, move dates), let the user choose, then update only the affected rows. Recompute the calibration factor from done rows (actual / estimated) and save it.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - After a plan or status sync: make each touched quest's state match its spec status (draft = planning, ready/approved = ready, in-progress = onquest, done = done), forward only, following add-to-quest's move rules.
