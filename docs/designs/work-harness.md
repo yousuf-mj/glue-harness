@@ -36,7 +36,7 @@ harness/
     .claude-plugin/plugin.json        name, version (semver)
     skills/                           all 19 skills, copied as-is; ported in waves (docs/skill-status.md)
                                       wave 1: shape, elephant-plan, goldfish-review, sign-off, owl, writing (new), learn (new)
-    hooks/hooks.json                  SessionStart: pull updates, print me.md
+    hooks/hooks.json                  SessionStart: pull updates, print the me skill
     skills/me/                        how I like to work and read (shared by all profiles)
     templates/glue-files/             starter Glue folder (see 3.4)
   profiles/
@@ -52,7 +52,7 @@ harness/
 
 **Boundary rule:** something goes in GitHub only if it would make sense at any company. Anything naming my employer, a colleague, a system or a customer lives in work Glue on the laptop ([ADR 0001](../adr/0001-github-holds-no-company-content.md)).
 
-### 3.2 Profile contract (`profile.md`)
+### 3.2 Profile contract (`profile-<name>` skill)
 Every core skill reads the active profile skill (`profile-<name>`) before its first step. It is plain markdown with these headings, all required:
 
 | Heading | Work value | Meaning |
@@ -72,7 +72,7 @@ Every core skill reads the active profile skill (`profile-<name>`) before its fi
 ### 3.3 Skills in core
 - **shape, elephant-plan:** ported as they are, with the personal parts removed. "Tell Glue" becomes "record in Glue as the profile says". Saga and quest wording becomes "the piece of work".
 - **goldfish-review:** doc and bug modes. Stage, design and code modes are left out this round.
-- **sign-off:** keeps the doc layout (summary at the top, decisions and actions at the end), the approval tiers and the decision log format. The reading rules move to `me.md`. The Christine and Playground sections stay in the personal setup.
+- **sign-off:** keeps the doc layout (summary at the top, decisions and actions at the end), the approval tiers and the decision log format. The reading rules move to the `me` skill. The Christine and Playground sections stay in the personal setup.
 - **writing (new):** Microsoft Writing Style Guide as the base, UK spelling, a humanizer pass before showing any prose meant for others, and the wording table (A industry standard / B plainer / C house voice) when naming things.
 - **learn (new):** see 3.5.
 
@@ -129,7 +129,7 @@ New repo `harness`. Source skills are copied from the personal setup (shape, ele
 - No company content is in `harness` (checked by `learn`'s scrub on every core candidate, plus a manual search before each push).
 
 ## 6. Testing approach
-- **Fresh-agent run per skill:** a new subagent with only the repo and a sample proposal (made-up company) runs the skill. Check the output has the required layout, reads `profile.md`, and writes to a temp Glue folder.
+- **Fresh-agent run per skill:** a new subagent with only the repo and a sample proposal (made-up company) runs the skill. Check the output has the required layout, loads the profile skill, and writes to a temp Glue folder.
 - **Learning loop:** seed `learnings.md` with fixed lines (repeats, a malformed line, one with company terms). Run `learn` and check promotions, the malformed-line report and the blocked scrub.
 - **Profile contract:** run a skill with a missing heading and check it stops and names the heading.
 - **Install:** done by hand on the work laptop, both surfaces.
@@ -139,7 +139,7 @@ New repo `harness`. Source skills are copied from the personal setup (shape, ele
 - **Rollback:** uninstall the two plugins and remove the uploaded skills. Work Glue stays as plain files and keeps its value without the harness.
 
 ## 8. Proposed slicing
-1. Repo skeleton, marketplace, profile contract, `me.md`, `GLOSSARY.md`, all skills copied as-is, update hook (done 2026-11-25)
+1. Repo skeleton, marketplace, profile contract, `me` skill, `GLOSSARY.md`, all skills copied as-is, update hook (done 2026-11-25)
 2. Port wave 1: shape, elephant-plan, goldfish-review, sign-off (core part), owl
 3. `writing` skill
 4. `learn` skill plus the work Glue template
