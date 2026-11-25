@@ -1,6 +1,6 @@
 # 001 · People profiles
 
-Status: approved
+Status: in-progress
 Route: feature (overruled from project: the personal-data rules are settled below, files stay private in Glue, easy to undo)
 
 ## Scope
