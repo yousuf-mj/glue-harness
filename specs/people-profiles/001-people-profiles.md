@@ -1,6 +1,6 @@
 # 001 · People profiles
 
-Status: in-progress
+Status: done
 Route: feature (overruled from project: the personal-data rules are settled below, files stay private in Glue, easy to undo)
 
 ## Scope
@@ -20,12 +20,12 @@ Never record health, private life, family, beliefs or personality guesses. When 
 
 ## Acceptance criteria
 - AC-01.1 The skill ships `template.md` with these sections, in order: Role and team, Reports to, Joined, What they work on, How they like to work, What they care about, Agreed adjustments, How I can help, Log. Front matter has `name` and `aliases`.
-- AC-01.2 Creating a profile writes `$G/resources/people/<slug>.md` from the template, where `<slug>` is the name in lowercase with spaces as hyphens. It fills only what the user said; other sections keep the placeholder `-`. If the file exists, it does not overwrite it.
+- AC-01.2 Creating a profile writes `$G/resources/people/<slug>.md` from the template, where `<slug>` is the name in lowercase with spaces as hyphens. It fills only what the user said; other sections keep the placeholder `-`. If the file exists, it does not overwrite it. Names with `/` or a leading `.` or `_` are refused (exit 2).
 - AC-01.3 On first run the skill copies the template to `$G/resources/people/_template.md` if missing, for hand use.
-- AC-01.4 `feed.sh <glue> <date> <text>` appends `- <date> · <text>` under `## Log` of every profile whose `name` or an alias appears in `<text>` as a whole word, case-insensitive. It prints `unmatched` and changes nothing when no profile matches.
-- AC-01.5 When two or more profiles match the same name (two Sams), `feed.sh` changes nothing and prints `ambiguous: <slugs>`.
+- AC-01.4 `feed.sh <glue> <date> <text>` (text `-` reads stdin, so the journal never puts his words inside shell quotes) appends `- <date> · <text>` under `## Log` of every profile whose `name` or an alias appears in `<text>` as a whole word, case-insensitive. It prints `unmatched` and changes nothing when no profile matches.
+- AC-01.5 When two or more profiles match the same name (two Sams), `feed.sh` changes nothing and prints `ambiguous: <slugs>`. A longer match wins over a shorter one inside it, so "Sam Smith" settles a shared alias "sam" (changed during build after review).
 - AC-01.6 The journal's log step runs `feed.sh` after a `meet` append, with no extra output. The one-line `📓 Logged:` reply is unchanged.
-- AC-01.7 `feed.sh --check <glue> <text>` prints `matched: <slugs>`, `unmatched` or `ambiguous: <slugs>` and writes nothing. The journal's evening wrap uses it to list today's `meet` lines that matched no profile as one line, "No profile yet: …", in the gaps step.
+- AC-01.7 `feed.sh --check <glue> <text>` prints `matched: <slugs>`, `unmatched` or `ambiguous: <slugs>` and writes nothing. The journal's evening wrap uses it to list today's `meet` lines that matched no profile as one line, "No profile yet: …", and ambiguous ones as "Unclear who: …", in the gaps step.
 - AC-01.8 When the user asks about a person ("who is Sam", "what does Alex work on"), the skill answers from the profile and quotes its lines. If no profile exists, it says so in one line. Every answer about a person ends with their "How I can help" lines, or "How I can help: -" when empty.
 
 ## Tests (seam: `feed.sh` against a temp Glue folder, in `core/skills/people/test_feed.sh`)

@@ -57,4 +57,24 @@ check "T4 --check matched prints matched" "$(bash "$here/feed.sh" --check "$g" "
 check "T4 --check unmatched prints unmatched" "$(bash "$here/feed.sh" --check "$g" "Spoke to Alex")" "unmatched"
 check "T4 --check writes nothing" "$(cat "$g/resources/people/sam-smith.md")" "$before"
 
+# Review fixes
+g="$(new_glue)"
+bash "$here/create.sh" "$g" "Tom & Jerry" >/dev/null
+check "T3 ampersand name kept" "$(sed -n 's/^name: //p' "$g/resources/people/tom-&-jerry.md")" "Tom & Jerry"
+bash "$here/create.sh" "$g" "../evil" >/dev/null 2>&1; rc=$?
+check "T3 path name refused (exit 2)" "$rc" "2"
+check "T3 nothing written outside people/" "$(ls "$g/resources")" "people"
+g="$(new_glue)"
+bash "$here/create.sh" "$g" "Sam Smith" >/dev/null
+printf '%s\n' 'Budget $500k with Sam "quoted" `x`' | bash "$here/feed.sh" "$g" 2026-11-25 - >/dev/null
+check "T1 text from stdin kept as-is" "$(tail -1 "$g/resources/people/sam-smith.md")" '- 2026-11-25 · Budget $500k with Sam "quoted" `x`'
+bash "$here/create.sh" "$g" "Sam Jones" >/dev/null
+bash "$here/create.sh" "$g" "Alex Lee" >/dev/null
+out="$(bash "$here/feed.sh" "$g" 2026-11-25 "1:1 with Sam Smith and Alex")"
+check "T2 full name settles a shared alias" "$(tail -1 "$g/resources/people/sam-smith.md")" "- 2026-11-25 · 1:1 with Sam Smith and Alex"
+check "T2 other person still fed" "$(tail -1 "$g/resources/people/alex-lee.md")" "- 2026-11-25 · 1:1 with Sam Smith and Alex"
+check "T2 --check reports ambiguous" "$(bash "$here/feed.sh" --check "$g" "Spoke to Sam")" "ambiguous: sam-jones sam-smith"
+f="$g/resources/people/alex-lee.md"; sed -i.bak 's/^name: .*/name: "Alex Lee"/' "$f"; rm -f "$f.bak"
+check "T1 quoted name in front matter matches" "$(bash "$here/feed.sh" --check "$g" "Lunch with alex lee")" "matched: alex-lee"
+
 echo; [ "$fails" = 0 ] && echo "all passed" || { echo "$fails failed"; exit 1; }

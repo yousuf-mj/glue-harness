@@ -23,7 +23,7 @@ When the user gives one of these, record only the agreed adjustment or the work 
 Record what he observed or was told about work: "likes data before a decision", not "seems anxious".
 
 ## 1. Create a profile
-1. Run `bash "$P/create.sh" "$G" "<Full Name>"`. It copies the template to `_template.md` on first run and never overwrites an existing profile (it prints `exists:` instead; then update that file).
+1. Run `bash "$P/create.sh" "$G" "<Full Name>"`. It copies the template to `_template.md` on first run and never overwrites an existing profile (it prints `exists:` instead; then update that file). It refuses names containing `/` or starting with `.` or `_` (`bad name:`).
 2. Fill only what the user said, section by section. Leave every other section as `-`. Don't look people up elsewhere and don't guess.
 3. Add other names he uses for them (nicknames, initials) to `aliases`, lowercase.
 4. Reply in one line: `🤝 Created: <Name> (<sections filled>)`.
@@ -42,7 +42,7 @@ When he asks about a person ("who is Sam", "what does Alex work on") or refers t
 4. If there's no profile, say so in one line and offer to create one.
 
 ## Journal feed
-The `journal` skill runs `bash "$P/feed.sh" "$G" <date> "<text>"` after every `meet` entry. It appends the line to every profile whose `name` or alias appears in the text as a whole word. It prints `unmatched` when none match and `ambiguous: <slugs>` (changing nothing) when one name fits two people. Fix ambiguity by giving each person a distinct alias.
+The `journal` skill runs `feed.sh` after every `meet` entry, with the text on stdin (`-`) through a quoted heredoc. It appends the line to every profile whose `name` or alias appears in the text as a whole word; a longer match wins over a shorter one inside it ("Sam Smith" over "sam"). It prints `unmatched` when none match and `ambiguous: <slugs>` (changing nothing) when one name still fits two people. Fix ambiguity by using the full name or giving each person a distinct alias.
 
 ## Style
 UK spelling, plain words, short lines. No judgement, ratings or scores about people.

@@ -54,8 +54,12 @@ Rules for the text:
 For a `meet` entry, also feed it to people profiles, silently (set `P` as the `people` skill's step 0 says: its base directory in Claude Code, `$G/.harness/people` in the Claude app; skip this if `$P/feed.sh` doesn't exist):
 
 ```bash
-bash "$P/feed.sh" "$G" "$(TZ=Europe/London date +%F)" "<text>" >/dev/null
+bash "$P/feed.sh" "$G" "$(TZ=Europe/London date +%F)" - >/dev/null <<'TXT'
+<text>
+TXT
 ```
+
+Pass the text through the quoted heredoc as shown, never inside double quotes, so `$`, quotes and backticks in his words stay as typed.
 
 Reply with one line only: `📓 Logged: <tag> · <text>`. No questions, no follow-up, so he can get back to work.
 
@@ -87,7 +91,7 @@ Append its output to the day file as-is (it starts with `## Speed`). If it says 
 
 Then write one `learn` line about speed, from the numbers only. For example: "Slowest request was 3m 10s, 80% model time: big rewrites cost more than tool calls." No blame, no scores.
 
-**c. Show him the gaps first.** Feed each pulled `meet` line to people profiles as in step 1. Then run `bash "$P/feed.sh" --check "$G" "<text>"` on every `meet` line in today's file (it writes nothing) and collect the ones that print `unmatched`. In chat, list at most 3 pulled items that look important, add one line `No profile yet: <those meet lines>` if there are any, and ask one question: "Anything to add or fix before I write the summary?" Wait for the answer.
+**c. Show him the gaps first.** Feed each `meet` line pulled in this run (not ones already in the file) to people profiles as in step 1. Then run `bash "$P/feed.sh" --check "$G" -` (text through the same quoted heredoc; it writes nothing) on every `meet` line in today's file. In chat, list at most 3 pulled items that look important, then `No profile yet: <lines that printed unmatched>` and `Unclear who: <lines that printed ambiguous>` if there are any, and ask one question: "Anything to add or fix before I write the summary?" Wait for the answer.
 
 **d. Append the summary** to the day file. Use exactly this shape:
 
