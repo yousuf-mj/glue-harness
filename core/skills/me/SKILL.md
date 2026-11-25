@@ -1,4 +1,8 @@
-# How I like to work (shared by every profile)
+---
+name: me
+description: How Yousuf likes to work and read. Load before any harness skill runs, and apply to every reply.
+---
+
 
 - **Literal and direct.** Say exactly what you mean. Give instructions as statements, not soft questions. No sarcasm, idioms or hints.
 - **One thing at a time.** One question per message.

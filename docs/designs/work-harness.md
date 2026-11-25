@@ -53,7 +53,7 @@ harness/
 **Boundary rule:** something goes in GitHub only if it would make sense at any company. Anything naming my employer, a colleague, a system or a customer lives in work Glue on the laptop ([ADR 0001](../adr/0001-github-holds-no-company-content.md)).
 
 ### 3.2 Profile contract (`profile.md`)
-Every core skill reads the active `profile.md` before its first step. It is plain markdown with these headings, all required:
+Every core skill reads the active profile skill (`profile-<name>`) before its first step. It is plain markdown with these headings, all required:
 
 | Heading | Work value | Meaning |
 |---|---|---|
@@ -65,7 +65,7 @@ Every core skill reads the active `profile.md` before its first step. It is plai
 
 **Missing or incomplete profile:** the skill stops and names the missing heading. It doesn't guess.
 
-**Which profile is active:** the installed profile plugin. Only one profile plugin is installed per machine. Its SessionStart hook prints `profile.md` and `~/glue/standing-rules.md` into every session, so skills don't need to find the file.
+**Which profile is active:** the installed profile plugin. Only one profile plugin is installed per machine. Each profile is a skill, `profile-<name>` (in `profiles/<name>/skills/`), so the Claude app gets it too. In Claude Code the profile's SessionStart hook also prints it and `~/glue/standing-rules.md`. In the Claude app, which runs no hooks, every core skill's step 0 loads `me` and the active profile skill.
 
 **Vocabulary:** project (was realm), epic (was saga), ticket (was quest). No themed wording.
 

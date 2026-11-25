@@ -10,7 +10,7 @@
           },
           {
             "type": "command",
-            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/me.md\""
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/skills/me/SKILL.md\""
           }
         ]
       }

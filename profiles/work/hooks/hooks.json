@@ -1,7 +1,14 @@
 {
   "hooks": {
     "SessionStart": [
-      { "hooks": [ { "type": "command", "command": "cat \"${CLAUDE_PLUGIN_ROOT}/profile.md\"; [ -f ~/glue/standing-rules.md ] && cat ~/glue/standing-rules.md || echo 'Glue: ~/glue/ not found. Create it from the core template before recording.'" } ] }
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/skills/profile-work/SKILL.md\"; [ -f ~/glue/standing-rules.md ] && cat ~/glue/standing-rules.md || echo \"Glue: ~/glue/ not found. Create it from the core template before recording.\""
+          }
+        ]
+      }
     ]
   }
 }
