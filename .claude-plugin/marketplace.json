@@ -1,0 +1,8 @@
+{
+  "name": "harness",
+  "owner": { "name": "Yousuf" },
+  "plugins": [
+    { "name": "harness-core", "source": "./core", "description": "Shared skills: shaping, planning, reviews, docs, learning, owl." },
+    { "name": "harness-work", "source": "./profiles/work", "description": "Work profile: Glue is the local folder ~/glue/." }
+  ]
+}
