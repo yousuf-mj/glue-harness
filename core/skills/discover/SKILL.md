@@ -54,6 +54,6 @@ Each returns 2-3 concepts with: a one-line pitch, the core experience in 3-5 ste
 - Hand off to `shape`, which reads this folder.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: **Stage finished** for the saga (slug = the doc folder prefix), stage `discover`, linking `brief.md`, `research.md` and `decision.md`. Create the saga in the realm if it doesn't exist yet.

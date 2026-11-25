@@ -110,6 +110,6 @@ Write `screens.md`: for every screen and state from the UX inventory (or your ow
 When all design stages are done, run `goldfish-review` in design mode across all design folders. Then `elephant-plan` links `docs/designs/<slug>-ui/` (and `-ux/`), and `write-spec` turns each screen state into Given/When/Then scenarios and acceptance criteria, including contrast and focus requirements.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: **Stage finished** for the saga, stage `ui-design`, linking `design-system.md` and the screens, once its review has passed.

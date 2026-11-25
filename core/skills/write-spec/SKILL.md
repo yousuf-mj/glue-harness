@@ -85,7 +85,7 @@ The spec is approved only once main says so. If landing fails, say so; don't han
 Tell the user which specs are approved on main, with their paths and numbers, and that `build-from-spec` builds them in dependency order from main. If `.agents/tracker.md` exists, run `roadmap` plan mode next.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - After the drafts land on main: one quest per spec (create or link it in the saga), state `planning`, and write `Glue quest: <id>` on the spec's first lines before committing.
 - After the approval lands on main: each approved spec's quest moves to `ready`, `readyFor: build`, with the spec's path on main as a scroll. When every spec in the saga is ready, add the `write-spec` trail step.

@@ -41,7 +41,7 @@ Based on workplace research: direct, literal communication; clear written expect
 - **One concrete next step.** Every reply ends with exactly one 👉 action, small enough to start in under a minute.
 
 ## Where things live
-- **Glue** (quest journal): https://claude.ai/artifact/FSVjt7tWMt8kusiq46Kv7y , slug `74ef3f29-ee4e-4a18-9987-c80792cc1b88`. Use the same tool choice as add-to-quest section 0 (`ArtifactData`, else `mcp__claude-artifacts__db_*`). Collections: `realms`, `sagas`, `quests`, `forge` (open and merged PRs, kept fresh by the daily Glue catch-up), `dumps`, and Owl's own `owl`.
+- **Glue** (quest tracker): https://claude.ai/artifact/FSVjt7tWMt8kusiq46Kv7y , slug `74ef3f29-ee4e-4a18-9987-c80792cc1b88`. Use the same tool choice as add-to-quest section 0 (`ArtifactData`, else `mcp__claude-artifacts__db_*`). Collections: `realms`, `sagas`, `quests`, `forge` (open and merged PRs, kept fresh by the daily Glue catch-up), `dumps`, and Owl's own `owl`.
 - **Repo**: `yousuf-mj/playground-app` (`docs/specs/README.md`, spec `status:` lines, `docs/designs/`, open branches). If the repo can't be attached, use Glue's `forge` and say so in one line.
 - **Project docs** (chat only): the Projects tool. Research docs carry a `**Status:**` line.
 - **Recent chats** (chat only): `recent_chats` for the last 3 days. Look for "Next step" or open questions the user never answered.

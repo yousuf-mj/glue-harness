@@ -15,3 +15,6 @@
 
 ## 0.1.4 (2026-11-25)
 - New journal skill: one-line daily log in Glue `journal/YYYY-MM-DD.md`, evening wrap with summary and open loops
+
+## 0.1.5 (2026-11-25)
+- Glue is no longer called "the quest journal", so "journal" only means the journal skill. add-to-quest now responds to "update Glue"

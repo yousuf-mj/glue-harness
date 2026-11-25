@@ -63,7 +63,7 @@ For `Route: feature` specs, the review is one round and replaces the usual triag
 - Ask the user before pushing or opening the PR.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - At the gate: read `Glue quest: <id>` from the spec and move that quest to `onquest`. If the spec has no quest, create one in the repo's realm and add the line to the spec.
 - In the PR body: include `glue:<id>`.

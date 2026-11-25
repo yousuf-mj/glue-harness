@@ -52,6 +52,6 @@ Save `chosen.png` and a `notes.md` of up to 10 lines: what was chosen, why, and 
 No goldfish review runs here. The user's reaction is the review.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: a **Note** on the change's quest with what was chosen and a link to `chosen.png` on main. If there's no quest yet, create one in the repo's realm as `planning` with `readyFor: spec`.

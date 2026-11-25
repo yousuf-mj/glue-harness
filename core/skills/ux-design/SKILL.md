@@ -92,6 +92,6 @@ Do this before the wireframes are final, not after, so you don't redo screens.
 Run `sign-off`: the summary, wording rows still open, decisions, and your actions. Then wait for an explicit approval and log the decisions and any corrections. Only then tell the user the UX is ready. `ui-design` takes the screens, states and copy from here and adds the visual design. `elephant-plan` links `docs/designs/<slug>-ux/` and the shape pitch.
 
 ## Tell Glue (last step, every time)
-When this skill finishes, before the final reply, run `add-to-quest` so Glue, the quest journal, shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
+When this skill finishes, before the final reply, run `add-to-quest` so Glue shows what happened. Don't ask first and don't skip it: a finished skill that Glue hasn't heard about counts as unfinished. If Glue can't be reached, say so in one line and carry on.
 
 - Event: **Stage finished** for the saga, stage `ux-design`, linking `flows.md` and the folder, once its review has passed.
