@@ -9,3 +9,6 @@
 
 ## 0.1.2 (2026-11-25)
 - /update-harness command for a manual update
+
+## 0.1.3 (2026-11-25)
+- New writing skill with references
