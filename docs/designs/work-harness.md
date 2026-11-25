@@ -24,7 +24,7 @@ I'm an Engineering Manager who has just started at work. My personal Claude setu
 - Notion at work
 
 ## 2. Glossary
-See [GLOSSARY.md](../../GLOSSARY.md). Terms used here: **core**, **profile**, **Glue**, **learning**, **standing rule**, **promotion**, **`me.md`**.
+See [GLOSSARY.md](../../GLOSSARY.md). Terms used here: **core**, **profile**, **Glue**, **learning**, **standing rule**, **promotion**, **`me`**.
 
 ## 3. Design
 
@@ -37,14 +37,14 @@ harness/
     skills/                           all 19 skills, copied as-is; ported in waves (docs/skill-status.md)
                                       wave 1: shape, elephant-plan, goldfish-review, sign-off, owl, writing (new), learn (new)
     hooks/hooks.json                  SessionStart: pull updates, print me.md
-    me.md                             how I like to work and read (shared by both profiles)
+    skills/me/                        how I like to work and read (shared by all profiles)
     templates/glue-files/             starter Glue folder (see 3.4)
   profiles/
     work/                             plugin: harness-work
       .claude-plugin/plugin.json      name, version, requires core version range
-      profile.md
+      skills/profile-<name>/SKILL.md
     personal/                         later round
-      profile.md
+      skills/profile-<name>/SKILL.md
   docs/                               designs, ADRs, decision log for the harness itself
   GLOSSARY.md
   CHANGELOG.md

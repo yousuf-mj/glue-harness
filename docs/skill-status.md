@@ -1,13 +1,13 @@
 # Skill status
 
-Every skill is in `core/skills/` and loads as-is. Port each one in turn: add a step 0 "load the `me` skill and the active `profile-<name>` skill", remove personal parts, read `profile.md`, use the vocabulary project / epic / ticket, record to Glue as the profile says.
+Every skill is in `core/skills/` and loads as-is. Port each one in turn: add a step 0 "load the `me` skill and the active `profile-<name>` skill", remove personal parts, use the vocabulary project / epic / ticket, record to Glue as the profile says.
 
 | Skill | Wave | Status | Notes |
 |---|---|---|---|
 | shape | 1 | copied | |
 | elephant-plan | 1 | copied | |
 | goldfish-review | 1 | copied | |
-| sign-off | 1 | copied | Split: reading rules now in `core/me.md`; Christine/Playground parts move to personal profile |
+| sign-off | 1 | copied | Split: reading rules now in the `me` skill; Christine/Playground parts move to personal profile |
 | owl | 1 | copied | Glue checks need the files adapter |
 | me | 1 | done | Replaces core/me.md so the Claude app gets it too |
 | profile-work | 1 | done | In profiles/work; Claude app equivalent of the hook |
