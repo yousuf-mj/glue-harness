@@ -71,6 +71,16 @@ Only add what isn't already logged. Append them as one block at the end of `## L
 - 14:00 · meet · Platform sync (pulled)
 ```
 
+**b2. Speed review.** Run the report on today's telemetry log (written by the harness hooks):
+
+```bash
+python3 "<this skill's base directory>/../../hooks/telemetry_report.py" "$G/telemetry/$(TZ=Europe/London date +%F).jsonl"
+```
+
+Append its output to the day file as-is (it starts with `## Speed`). If it says there is no file, skip this step and say in one line that no requests were timed today (most likely a cloud session, where hooks can't reach Glue).
+
+Then write one `learn` line about speed, from the numbers only. For example: "Slowest request was 3m 10s, 80% model time: big rewrites cost more than tool calls." No blame, no scores.
+
 **c. Show him the gaps first.** In chat, list at most 3 pulled items that look important, and ask one question: "Anything to add or fix before I write the summary?" Wait for the answer.
 
 **d. Append the summary** to the day file. Use exactly this shape:
@@ -81,11 +91,12 @@ Only add what isn't already logged. Append them as one block at the end of `## L
 **Decided:** <decisions, or "none">
 **Still open:** <open loops, or "none">
 **Start tomorrow with:** <one thing>
+**Speed:** <requests, total time, slowest request, one lesson>
 ```
 
 **e. Carry open loops forward.** Append each `open` item and each "Still open" line to `inbox.md` as `- YYYY-MM-DD · <item> (from journal)`. Skip any already there.
 
-**f. Reply** in chat with the `## Today` block and one 👉 step (usually "Close the laptop" or the start-tomorrow item).
+**f. Reply** in chat with the `## Today` block (including the Speed line) and one 👉 step (usually "Close the laptop" or the start-tomorrow item).
 
 ## Reading back
 

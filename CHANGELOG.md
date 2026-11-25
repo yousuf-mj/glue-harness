@@ -18,3 +18,7 @@
 
 ## 0.1.5 (2026-11-25)
 - Glue is no longer called "the quest journal", so "journal" only means the journal skill. add-to-quest now responds to "update Glue"
+
+## 0.1.6 (2026-11-25)
+- Telemetry hooks log request and tool timings to Glue `telemetry/YYYY-MM-DD.jsonl` (Claude Code only; no-op when ~/glue is missing)
+- Journal evening wrap adds a `## Speed` review and a Speed line in the summary
