@@ -5,16 +5,16 @@ Status: draft
 ## Summary
 - **What:** a personal GitHub repo holding a shared core of skills (shape, elephant-plan, goldfish-review, sign-off, writing, learn) and two small profiles (work, personal) that tell the core where things live.
 - **Decides:** the core never names a tool or a company. "Glue" is the role name for the place where state goes. At work, Glue is a local folder of markdown files.
-- **Changes for me:** at TrustFlight, Claude Code and the Claude desktop app run the same skills. Corrections are captured automatically, and a Friday `learn` run turns repeats into rules.
+- **Changes for me:** at work, Claude Code and the Claude desktop app run the same skills. Corrections are captured automatically, and a Friday `learn` run turns repeats into rules.
 - **Needs attention:** the 1-hour install timebox on the work laptop (plugin install vs manual upload).
 - Waiting for your sign-off.
 
 ---
 
 ## 1. Problem and goal
-I'm an Engineering Manager who has just started at TrustFlight. My personal Claude setup has a strong practice for shaping, planning, fresh-context review, documentation and learning from corrections, but it's tied to personal tools (the Glue artifact, Notion, Playground, Christine). I want that practice at work, kept in one place, so an improvement made in one setup can flow to the other.
+I'm an Engineering Manager who has just started at work. My personal Claude setup has a strong practice for shaping, planning, fresh-context review, documentation and learning from corrections, but it's tied to personal tools (the Glue artifact, Notion, Playground, Christine). I want that practice at work, kept in one place, so an improvement made in one setup can flow to the other.
 
-**Goal:** one repo of core skills, usable at work through a work profile, with TrustFlight knowledge kept on the work laptop.
+**Goal:** one repo of core skills, usable at work through a work profile, with my employer knowledge kept on the work laptop.
 
 **Non-goals (this round):**
 - Team adoption, a team template, or Claude for other people
@@ -50,7 +50,7 @@ harness/
   CHANGELOG.md
 ```
 
-**Boundary rule:** something goes in GitHub only if it would make sense at any company. Anything naming TrustFlight, a colleague, a system or a customer lives in work Glue on the laptop ([ADR 0001](../adr/0001-github-holds-no-company-content.md)).
+**Boundary rule:** something goes in GitHub only if it would make sense at any company. Anything naming my employer, a colleague, a system or a customer lives in work Glue on the laptop ([ADR 0001](../adr/0001-github-holds-no-company-content.md)).
 
 ### 3.2 Profile contract (`profile.md`)
 Every core skill reads the active `profile.md` before its first step. It is plain markdown with these headings, all required:
@@ -107,7 +107,7 @@ An estimate line also records `est: <time> actual: <time>`.
 ### 3.6 Install and update
 - **Claude Code:** `harness` is a plugin marketplace. Install `harness-core` and `harness-work`. A SessionStart hook runs `claude plugin marketplace update harness` and updates both plugins at every session start, never blocking. New versions load from the next session.
 - **Claude app (desktop):** upload each core skill folder as a skill, and connect `~/glue/` as a folder so the app can read and write it. Re-upload after a core version change.
-- The work laptop pulls from personal GitHub over plain git. If GitHub is blocked, use a personal GitLab mirror. Never use TrustFlight's GitLab.
+- The work laptop pulls from personal GitHub over plain git. If GitHub is blocked, use a personal GitLab mirror. Never use my employer's GitLab.
 
 ### 3.7 Failure handling
 | Case | Behaviour |
@@ -147,7 +147,7 @@ New repo `harness`. Source skills are copied from the personal setup (shape, ele
 6. First real use: onboarding doc
 
 ## 9. Open questions
-- Does the work Claude app allow uploading custom skills under TrustFlight's org settings? (Answered during slice 5.)
+- Does the work Claude app allow uploading custom skills under my employer's org settings? (Answered during slice 5.)
 - Should the Friday `learn` run be a scheduled task or on request? Default: on request until it's used twice.
 - When the personal profile is built, does personal Glue keep quest and saga vocabulary in its adapter only? (Next round.)
 
@@ -155,7 +155,7 @@ New repo `harness`. Source skills are copied from the personal setup (shape, ele
 
 ## Decisions
 - One personal GitHub repo with core plus profiles. Reason: improvements flow both ways. (you)
-- GitHub holds no company content; TrustFlight knowledge lives in work Glue. Reason: IP and data stay in the company. (you)
+- GitHub holds no company content; my employer knowledge lives in work Glue. Reason: IP and data stay in the company. (you)
 - "Glue" is the role name; work Glue is a markdown folder. Reason: speed and fewer calls. (you)
 - Use both Claude Code and the desktop app at work. (you)
 - Capture: automatic for corrections, on request for notes, weekly `learn` review. (you)

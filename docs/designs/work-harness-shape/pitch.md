@@ -1,13 +1,13 @@
 # Pitch: shared AI harness (work edition first)
 
-**Summary.** One GitHub repo holds a shared core of skills for shaping, planning, reviewing, writing docs and learning from corrections. It's designed for two profiles, personal (Glue) and work (a local markdown second brain), but only the work profile is built this round. Build the core and the work profile first, within a couple of evenings plus 1–2 work days. Test it on the TrustFlight onboarding doc.
+**Summary.** One GitHub repo holds a shared core of skills for shaping, planning, reviewing, writing docs and learning from corrections. It's designed for two profiles, personal (Glue) and work (a local markdown second brain), but only the work profile is built this round. Build the core and the work profile first, within a couple of evenings plus 1–2 work days. Test it on the my employer onboarding doc.
 
 **Verdict: Go smaller.** Build the core and the work profile only. Move the personal setup onto the core later.
 
 ---
 
 ## 1. Problem and who has it
-I'm an Engineering Manager who's just started at TrustFlight. My first documents are an engineer/EM onboarding doc, an access-and-process map (who needs what, who to ask, where information lives, raising tickets) and a proposal on AI credits and usage. My personal Claude setup has a mature process for shaping, planning, fresh-context review, documentation and self-learning, but it's tied to personal projects and tools. Work Claude starts from nothing, and the company has no established AI processes.
+I'm an Engineering Manager who's just started at work. My first documents are an engineer/EM onboarding doc, an access-and-process map (who needs what, who to ask, where information lives, raising tickets) and a proposal on AI credits and usage. My personal Claude setup has a mature process for shaping, planning, fresh-context review, documentation and self-learning, but it's tied to personal projects and tools. Work Claude starts from nothing, and the company has no established AI processes.
 
 ## 2. Value case, and the case against
 - **For (evidence):** three real documents are due soon, so the demand is real. That says nothing yet about whether the harness helps.
@@ -33,12 +33,12 @@ harness/                    personal GitHub repo
 2. **Work:** I run shape or elephant-plan on a proposal. Claude interviews me and writes a doc in the sign-off shape.
 3. **Review:** goldfish-review runs in doc mode on the draft, then I triage the findings.
 4. **Record:** core skills call a "record" step, and the work profile writes it to the local second brain (decisions, learnings, estimate vs actual).
-5. **Learn:** when a correction repeats 2–3 times, `learn` proposes a skill edit. Everything lands in the work profile by default. Learnings and context stay inside the company (local second brain, or Notion if TrustFlight adopts it). A change moves to core only when it's a genuine improvement to a skill or to how learnings work, approved on a separate card after a scrub check for names, systems, customers and internal terms.
+5. **Learn:** when a correction repeats 2–3 times, `learn` proposes a skill edit. Everything lands in the work profile by default. Learnings and context stay inside the company (local second brain, or Notion if my employer adopts it). A change moves to core only when it's a genuine improvement to a skill or to how learnings work, approved on a separate card after a scrub check for names, systems, customers and internal terms.
 6. **Publish:** finished docs go to Confluence.
 7. **Sync (later round):** once the personal profile exists, improvements pushed to core are pulled by both. Out of scope now.
 
 ## 5. Options considered
-- **Notion as the second brain:** TrustFlight only has a trial and its docs live in Confluence. It would also add cost and lock-in. Lost.
+- **Notion as the second brain:** my employer only has a trial and its docs live in Confluence. It would also add cost and lock-in. Lost.
 - **A Claude artifact like Glue:** tied to one Claude account and not where the company keeps its records. Lost for work; kept for personal.
 - **Copying skills by hand into each account:** fastest on day one, but the copies drift. Lost to the shared repo.
 
@@ -62,7 +62,7 @@ harness/                    personal GitHub repo
 
 ## 7. Rabbit holes and no-gos
 - **Rabbit hole:** installing on the Claude app versus Claude Code. Timebox to 1 hour on the work machine before building more.
-- **Rabbit hole:** TrustFlight uses GitLab, not GitHub. The core stays in personal GitHub. The work machine only needs to pull from it over plain git. Check that GitHub isn't blocked on the work network. If it is, keep a read-only copy in a personal GitLab project. Never put the core in TrustFlight's GitLab, since that would make it company property.
+- **Rabbit hole:** my employer uses GitLab, not GitHub. The core stays in personal GitHub. The work machine only needs to pull from it over plain git. Check that GitHub isn't blocked on the work network. If it is, keep a read-only copy in a personal GitLab project. Never put the core in my employer's GitLab, since that would make it company property.
 - **Rabbit hole:** mapping Confluence structure. Not needed: publish by hand at first.
 - **No-gos this round:** team adoption, a team template, giving others their own Claude, the design/spec/build skills, the roadmap, the orchestrator, Notion, and moving the personal setup onto core.
 
