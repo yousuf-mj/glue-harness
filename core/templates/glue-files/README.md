@@ -5,7 +5,7 @@
 - `standing-rules.md`: approved company rules, loaded every session
 - `projects/<slug>/`: a piece of work (docs, decisions.md, notes)
 - `areas/`: ongoing responsibilities (team, 1:1s, hiring, on-call)
-- `resources/`: reference (systems, people, how-tos)
+- `resources/`: reference (systems, `people/` profiles, how-tos)
 - `archive/`: finished projects
 
 Learning line:
