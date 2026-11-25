@@ -9,7 +9,7 @@ claude plugin install harness-core@harness
 claude plugin install harness-work@harness
 mkdir -p ~/glue && cp -rn ~/.claude/plugins/marketplaces/harness/core/templates/glue-files/. ~/glue/
 ```
-Restart Claude Code. Every session start checks for updates; new versions load next session.
+Restart Claude Code. Every session start checks for updates; new versions load next session. To update by hand, run `/update-harness`.
 (If the marketplace folder path differs, copy `core/templates/glue-files/` from this repo instead.)
 
 ## Claude desktop app

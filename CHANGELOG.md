@@ -6,3 +6,6 @@
 
 ## 0.1.1 (2026-11-25)
 - me.md and profile.md become skills (me, profile-work) so the Claude app gets them too
+
+## 0.1.2 (2026-11-25)
+- /update-harness command for a manual update
