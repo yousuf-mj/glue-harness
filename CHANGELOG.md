@@ -12,3 +12,6 @@
 
 ## 0.1.3 (2026-11-25)
 - New writing skill with references
+
+## 0.1.4 (2026-11-25)
+- New journal skill: one-line daily log in Glue `journal/YYYY-MM-DD.md`, evening wrap with summary and open loops
