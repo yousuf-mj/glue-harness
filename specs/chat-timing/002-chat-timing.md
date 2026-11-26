@@ -1,6 +1,6 @@
 # 002 · Time Claude app requests
 
-Status: in-progress
+Status: done
 Route: feature
 Depends on: 001 (stacked on its branch: shares the `$G/.harness/` install step)
 

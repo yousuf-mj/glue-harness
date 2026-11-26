@@ -87,7 +87,7 @@ Only add what isn't already logged. Append them as one block at the end of `## L
 python3 "<this skill's base directory>/../../hooks/telemetry_report.py" "$G/telemetry/$(TZ=Europe/London date +%F).jsonl"
 ```
 
-Append its output to the day file as-is (it starts with `## Speed`). If it says there is no file, skip this step and say in one line that no requests were timed today (most likely a cloud session, where hooks can't reach Glue).
+In the Claude app, run `python3 "$G/.harness/telemetry/telemetry_report.py"` with the same argument instead (installed as the `me` skill says). Append its output to the day file as-is (it starts with `## Speed`). If it says there is no file, skip this step and say in one line that no requests were timed today (no Claude Code hooks ran, and no app request was marked).
 
 Then write one `learn` line about speed, from the numbers only. For example: "Slowest request was 3m 10s, 80% model time: big rewrites cost more than tool calls." No blame, no scores.
 

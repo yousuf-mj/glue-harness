@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# harness-scripts-version: 0.1.8
 """Turn a day's telemetry log into a short speed review (markdown).
 
 Usage: telemetry_report.py <path to YYYY-MM-DD.jsonl>
@@ -6,6 +7,7 @@ Usage: telemetry_report.py <path to YYYY-MM-DD.jsonl>
 A request runs from a 'prompt' event to the next 'stop' event in the same session.
 Tool time is the sum of pre -> post pairs (matched by tool_use_id) inside it.
 Model time is the rest: thinking and writing, which is often the slow part.
+Session "cowork" lines come from the Claude app (mark.py): no tool split, and a lower bound.
 """
 import json
 import sys
@@ -35,16 +37,19 @@ def build_requests(events):
     open_req = {}      # session -> request being built
     open_tool = {}     # tool_use_id -> pre event
     requests = []
+    last = {}          # session -> ms of its latest event
     for e in events:
         s, kind = e.get("session"), e.get("event")
         if kind == "prompt":
             if s in open_req:  # previous request never stopped (interrupted)
                 req = open_req.pop(s)
-                req["end"] = e["ms"]
+                # App requests have no events between prompts, so end at the last one seen.
+                req["end"] = last.get(s, e["ms"]) if s == "cowork" else e["ms"]
                 req["interrupted"] = True
                 requests.append(req)
             open_req[s] = {"start": e["ms"], "time": e["ts"][11:16],
-                           "prompt": e.get("prompt", ""), "tools": [], "interrupted": False}
+                           "prompt": e.get("prompt", ""), "tools": [], "interrupted": False,
+                           "app": s == "cowork"}
         elif kind == "pre":
             open_tool[e.get("id")] = e
         elif kind == "post":
@@ -56,6 +61,7 @@ def build_requests(events):
             req = open_req.pop(s)
             req["end"] = e["ms"]
             requests.append(req)
+        last[s] = e.get("ms", 0)
     for req in requests:
         req["total"] = req["end"] - req["start"]
         req["tool_ms"] = sum(d for _, d in req["tools"])
@@ -80,15 +86,17 @@ def report(requests) -> str:
     out = ["## Speed", ""]
     out.append(f"**Requests:** {len(requests)} · **Total:** {secs(total)} · "
                f"**Tool time:** {secs(tool_ms)} ({tool_ms * 100 // max(total, 1)}%) · "
-               f"**Model time:** {secs(total - tool_ms)} · **Tool calls:** {calls}")
+               f"**Model time:** {secs(sum(r['model_ms'] for r in requests if not r.get('app')))} · "
+               f"**App (no split):** {secs(sum(r['total'] for r in requests if r.get('app')))} · **Tool calls:** {calls}")
     out += ["", "**Slowest requests**", "",
             "| Time | Request | Total | Tools | Model | Calls |",
             "| --- | --- | --- | --- | --- | --- |"]
     for r in sorted(requests, key=lambda r: r["total"], reverse=True)[:5]:
-        flag = " (interrupted)" if r["interrupted"] else ""
+        flag = (" (app, lower bound)" if r.get("app") else "") + (" (interrupted)" if r["interrupted"] else "")
         prompt = (r["prompt"] or "-").replace("|", "/")
+        tools, model = ("-", "-") if r.get("app") else (secs(r["tool_ms"]), secs(r["model_ms"]))
         out.append(f"| {r['time']} | {prompt}{flag} | {secs(r['total'])} | "
-                   f"{secs(r['tool_ms'])} | {secs(r['model_ms'])} | {len(r['tools'])} |")
+                   f"{tools} | {model} | {len(r['tools'])} |")
 
     per_tool = defaultdict(lambda: [0, 0])
     for r in requests:
