@@ -15,7 +15,7 @@ Restart Claude Code. Every session start checks for updates; new versions load n
 ## Claude app (main route)
 Customize → Plugins → Personal plugins → + → Add marketplace → from a repository → `yousuf-mj/glue-harness`. Install `harness-core` and `harness-work`, and turn on **Sync automatically** so every push arrives on its own. Connect `~/glue/` as a folder. Plugins added here also sync to Claude Code, so you may not need the Claude Code install below.
 
-The app doesn't run hooks, so core skills load `me` and `profile-work` as their first step.
+The app doesn't run hooks, so core skills load `me` and `profile-work` as their first step. Chat requests are timed from the first to the last tool call (a lower bound), by `mark.py` installed into `~/glue/.harness/telemetry/`.
 
 ## Rules
 - Nothing naming a company, person, system or customer goes in this repo (see docs/adr/0001).

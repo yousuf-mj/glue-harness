@@ -22,3 +22,11 @@
 ## 0.1.6 (2026-11-25)
 - Telemetry hooks log request and tool timings to Glue `telemetry/YYYY-MM-DD.jsonl` (Claude Code only; no-op when ~/glue is missing)
 - Journal evening wrap adds a `## Speed` review and a Speed line in the summary
+
+## 0.1.7 (2026-11-25)
+- New people skill: one private profile per person in Glue `resources/people/`, from a template, with a data rule (write as if they'll read it; no health, private life or personality guesses)
+- Journal feeds `meet` lines into matching profiles and lists meetings with no profile at the evening wrap
+
+## 0.1.8 (2026-11-26)
+- Claude app requests are timed: `mark.py` writes `prompt`/`stop` telemetry lines (session `cowork`), a lower bound from first to last tool call
+- Speed report flags app requests, shows no tool/model split for them, and ends a missing `stop` at the last event instead of the next prompt
