@@ -1,16 +1,16 @@
 ---
 name: writing
-description: Write or review any document people will read (proposal, onboarding guide, how-to, runbook, decision doc, update, email): pick the doc type, apply the Microsoft-based style rules with UK spelling, use the summary-first layout, offer wording options when naming things, check it against the reader, and run a humanizer pass. Use for drafting, editing or reviewing prose.
+description: Write or review any document people will read (proposal, onboarding guide, how-to, runbook, decision doc, update, email): pick the doc type, voice and tone, apply the Microsoft-based style rules with UK spelling, use the summary-first layout, offer wording options when naming things, check it against the reader, and run a humanizer pass. Use for drafting, editing or reviewing prose.
 ---
 
 # Writing
 
-Version: 0.1.0
+Version: 0.2.0
 
 ## 0. Load first
 Load the `me` skill and the active `profile-<name>` skill. Apply every standing rule they list. Say in one line which ones you're applying.
 
-## 1. Before writing: settle three things
+## 1. Before writing: settle four things
 Ask only what you can't find yourself. One question at a time.
 1. **Reader.** Who reads this, what do they already know, and what will they do after reading it? Name the least experienced reader. The author is not the reader (see `references.md`: COK, EBS).
 2. **Job.** What one decision or action should the doc lead to?
@@ -28,7 +28,21 @@ Ask only what you can't find yourself. One question at a time.
 
 An onboarding doc is usually a short tutorial for day one plus a reference page, not one long document.
 
+4. **Voice and tone.** Voice is who is speaking: it stays the same everywhere. Tone is how formal the piece is: it changes with the situation (MC-VT, NNG-TONE). Say in one line which voice and tone you're using.
+   - **Voice:** `voice/yousuf.md` for anything sent in my name. If it's in someone else's name or the company's, ask.
+   - **Tone:** use the default for the type, then let the reader override it. A how-to for customers is formal; a proposal to my own team can be neutral.
+
+| Tone | File | Default for |
+|---|---|---|
+| **Casual** | `tone/casual.md` | Slack messages, meeting invites, quick emails to people I work with |
+| **Neutral** | `tone/neutral.md` | Updates, tutorials, how-tos, reference, explanations, runbooks |
+| **Formal** | `tone/formal.md` | Policies, proposals, decision records, anything for leadership, customers or outside the company |
+
+- The style rules in section 3 apply in every tone. Casual is no excuse for unclear.
+- **Writing to me is not writing as me.** `me` governs replies to me (signpost emojis, confidence ratings, hard answer first). The voice file governs text I'll send. Never carry one into the other.
+
 ## 2. Layout of every doc
+Casual-tone messages use the shape in `tone/casual.md` instead.
 - **Summary at the top:** at most 5 lines. What it is, what it decides or asks, what changes for the reader, and the one thing that most needs attention.
 - **Body:** the shape for its type.
 - **Decisions and actions at the end:** one line per decision with who made it; a checkbox list of actions, each with an owner and what it blocks. If nothing is open, say so.
@@ -58,6 +72,7 @@ Before showing a draft, walk it as the least experienced reader from step 1:
 - Can they do the job of the doc from this page alone? Where would they get stuck?
 - Every term defined or linked on first use? Every acronym spelled out once?
 - Anything that assumes knowledge only the author has? (COK)
+- Does it match the voice file and the tone file? Check the greeting, the sign-off and the "never use" list.
 
 For anything longer than one page, or going to more than a few people, run `goldfish-review` in doc mode with the Comprehension and Readiness lenses.
 
@@ -75,3 +90,4 @@ Every finding must quote the exact text it's about and name the rule it breaks (
 ## 8. Record
 - Any change I make to your wording or structure is a correction: record it in Glue as the profile says (a `correction` line in `learnings.md` at work).
 - If I say "note that" or "learning:", record a `note` line.
+- When I edit a draft written in my voice, offer one line for `voice/yousuf.md` with the before and after. Change the voice file only with my yes.

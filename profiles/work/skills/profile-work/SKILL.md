@@ -24,4 +24,4 @@ me
 project (was realm) · epic (was saga) · ticket (was quest)
 
 ## Standing rules
-Before the first step, read `~/glue/standing-rules.md` and apply every rule. If the folder is not reachable (Claude app without the folder connected), say so in one line and carry on without recording.
+Before the first step, read `~/glue/standing-rules.md` and apply every rule. If the folder is not reachable (Claude app without the folder connected), request access to `~/glue` once, before the first step, with the reason "log telemetry, corrections and journal entries". If I decline or the request fails, say so in one line, carry on without recording, and don't ask again in that chat.

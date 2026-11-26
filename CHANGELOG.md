@@ -30,3 +30,9 @@
 ## 0.1.8 (2026-11-26)
 - Claude app requests are timed: `mark.py` writes `prompt`/`stop` telemetry lines (session `cowork`), a lower bound from first to last tool call
 - Speed report flags app requests, shows no tool/model split for them, and ends a missing `stop` at the last event instead of the next prompt
+
+## 0.1.9 (2026-11-26)
+- Writing skill 0.2.0: voice and tone. Voice (who is speaking) stays the same; tone (casual, neutral, formal) changes with the doc type and reader
+- New `voice/yousuf.md` from a voice interview, and `tone/casual.md`, `tone/neutral.md`, `tone/formal.md`
+- Edits to drafts written in my voice are offered as new voice-file lines
+- harness-work 0.1.4: in the Claude app, ask once for access to `~/glue` when it isn't connected, instead of skipping recording silently

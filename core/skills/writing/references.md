@@ -17,6 +17,8 @@
 | EBS | [Nathan et al. 2001, expert blind spot](https://website.education.wisc.edu/~mnathan/Publications_files/2001_NathanEtAl_ICCS_EBS.pdf) | Experts skip steps novices need |
 | NNG-FC | [NN/g: False-consensus effect](https://www.nngroup.com/articles/false-consensus/) | You are not the user |
 | PERSONA | [Zheng et al., EMNLP 2024](https://aclanthology.org/2024.findings-emnlp.888/) | Expert personas don't improve accuracy; references and checklists do |
+| MC-VT | [Mailchimp Content Style Guide: Voice and tone](https://styleguide.mailchimp.com/voice-and-tone/) | Voice stays the same; tone changes with the situation and the reader |
+| NNG-TONE | [NN/g: The four dimensions of tone of voice](https://www.nngroup.com/articles/tone-of-voice-dimensions/) | Tone as a set of dials (funny–serious, formal–casual, respectful–irreverent, enthusiastic–matter-of-fact) |
 | QUOTE | [Claude docs: reduce hallucinations](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations) | Quote the text, cite the rule, retract unsupported claims |
 
 Unverified figures to keep out: GOV.UK "reading age of 9" and BDA "60 to 70 characters" (not confirmed in our research).
