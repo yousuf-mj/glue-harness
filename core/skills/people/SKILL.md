@@ -54,13 +54,13 @@ When you create or update a profile after a meeting, and a calendar tool is avai
 
    Write only the items he approves. Show no list when there's nothing new. An approved full name replaces `name`, the old name becomes an alias, and the file keeps its slug.
 
-Keep the invite's wording. "On Ryan's team" is a team fact: don't turn it into **Reports to**. Offer unsure facts with their question mark ("SmartDocs?"), or leave them out.
+Keep the invite's wording. "On Alex's team" is a team fact: don't turn it into **Reports to**. Offer unsure facts with their question mark ("<product>?"), or leave them out.
 
-Never copy ratings or praise from the invite (for example "star CS guy"). The data rule applies to every item in the list. Don't record the other attendees.
+Never copy ratings or praise from the invite (for example "one of our star engineers"). The data rule applies to every item in the list. Don't record the other attendees.
 
 Example reply, for a profile created as "Sam":
 ```
-🤝 Updated: Sam · Log: 2026-11-25 · 30 min · set up by Tim · intro
+🤝 Updated: Sam · Log: 2026-11-25 · 30 min · set up by Jo · intro
 From the invite, add any of these?
 1. Full name: Sam Smith
 2. Role and team: <title> · <team>
