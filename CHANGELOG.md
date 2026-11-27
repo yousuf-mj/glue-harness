@@ -39,3 +39,9 @@
 
 ## 0.1.10 (2026-11-26)
 - People skill: after a meeting, finds the invite in the calendar (last 14 days) when a calendar tool is available. Date, length and organiser go in the Log line; full name, title, team and other work facts are offered in one list and added only when approved. No ratings or praise are copied (spec 003)
+
+## 0.1.11 (2026-11-27)
+- Profiles name their mail and calendar tools in a `## Connectors` section (format in README "Profiles"). Core skills never name a provider; a missing connector gives `📅 Calendar not connected` or `✉️ Mail not connected` (spec 004)
+- Owl uses today's calendar: a `📅 Free:` line before the buckets, a budget capped at the next meeting minus 5, the next meeting on the time line, and "wrap up or park?" 10 minutes before it. It creates a focus block or a reminder only on an explicit yes, and stores only start, end and subject
+- People and journal read `calendar.search` from `## Connectors`
+- harness-work 0.1.5: `## Connectors` for Microsoft 365, working day 09:00–18:00

@@ -8,7 +8,7 @@ Every skill is in `core/skills/` and loads as-is. Port each one in turn: add a s
 | elephant-plan | 1 | copied | |
 | goldfish-review | 1 | copied | |
 | sign-off | 1 | copied | Split: reading rules now in the `me` skill; Christine/Playground parts move to personal profile |
-| owl | 1 | copied | Glue checks need the files adapter |
+| owl | 1 | copied | Glue checks need the files adapter; uses the calendar from `## Connectors` (spec 004) |
 | me | 1 | done | Replaces core/me.md so the Claude app gets it too |
 | profile-work | 1 | done | In profiles/work; Claude app equivalent of the hook |
 | writing | 1 | done | New: doc types, Microsoft-based style rules, layout, wording table, reader check, humanizer pass, references |

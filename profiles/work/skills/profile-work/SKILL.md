@@ -20,6 +20,15 @@ me
 ## Extra rules
 ~/glue/standing-rules.md
 
+## Connectors
+suite: Microsoft 365
+calendar.search: outlook_calendar_search (query "*", afterDateTime/beforeDateTime, order "oldest")
+calendar.create: outlook_create_event
+calendar.times: wall-clock in "GMT Standard Time"; show as-is
+calendar.day: 09:00–18:00
+mail.search: outlook_email_search
+mail.draft: outlook_create_draft
+
 ## Vocabulary
 project (was realm) · epic (was saga) · ticket (was quest)
 

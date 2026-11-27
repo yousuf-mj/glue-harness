@@ -1,6 +1,6 @@
 # 004 · Connectors in the profile; Owl plans around the calendar
 
-Status: approved
+Status: done
 Route: feature
 Depends on: 003 (people skill reads the calendar)
 
@@ -22,7 +22,7 @@ The active profile names the mail and calendar tools in a `## Connectors` sectio
 - AC-04.5 The time check line adds the next meeting: `⏱️ 25 of 40 min · <meeting> in 10 min`. When a time check or hand-off finds the next meeting 10 minutes away or less, Owl asks "wrap up or park?" and records the choice on the focus doc.
 - AC-04.6 Owl's calendar use is read-only by default. It may offer, and creates with `calendar.create` only after an explicit yes in that chat: (a) a busy event in a free slot, subject `🦉 Focus: <focus>`; (b) a reminder: a 5-minute event shown as free, subject `🦉 Wrap up or park: <focus>`, starting 10 minutes before the next meeting.
 - AC-04.7 The focus doc stores only each event's start, end and subject. No attendees or bodies go to Glue.
-- AC-04.8 The people skill (section 4) and the journal (section 2b, Calendar line) read `calendar.search` from `## Connectors` and no longer name a provider. Their behaviour doesn't change.
+- AC-04.8 The people skill (section 4) and the journal (section 2b, Calendar line) read `calendar.search` from `## Connectors` and no longer name a provider. Their behaviour doesn't change. Exception, from AC-04.2: when the connector is missing or fails, the people skill says `📅 Calendar not connected` instead of `No invite found`. (Corrected during build.)
 
 ## Tests (hand check; skill prose, no script change)
 - G1 → AC-04.2: `git grep -n -i -E "outlook_|microsoft 365|google calendar|gmail" core/` returns nothing.

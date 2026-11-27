@@ -21,6 +21,22 @@ The app doesn't run hooks, so core skills load `me` and `profile-work` as their 
 - Nothing naming a company, person, system or customer goes in this repo (see docs/adr/0001).
 - Work Glue is `~/glue/`, plain files, never pushed.
 - Skill porting status: docs/skill-status.md
+- Core skills never name a mail or calendar provider or tool. They read `## Connectors` from the active profile.
 
 ## Profiles
 One core, many profiles. Each profile is `profiles/<name>/` with one skill, `profile-<name>`, plus a hook that loads it in Claude Code. Install core plus exactly one profile per setup. Personal profile: next round.
+
+### Connectors
+Each profile skill has a `## Connectors` section that names the mail and calendar tools for that setup. One `key: value` line per key; the value is the tool name, with any call notes in brackets.
+
+| Key | Value |
+|---|---|
+| `suite` | The suite's name, for the reader only |
+| `calendar.search` | Tool that lists events, with the arguments for "all events in a time range, oldest first" |
+| `calendar.create` | Tool that creates an event |
+| `calendar.times` | How the tool returns times, and how to show them |
+| `calendar.day` | Working day, `HH:MM–HH:MM`, used for free blocks |
+| `mail.search` | Tool that searches mail |
+| `mail.draft` | Tool that creates a draft (never sends) |
+
+A missing key means not connected. Skills then carry on and say `📅 Calendar not connected` or `✉️ Mail not connected` in one line.
