@@ -70,7 +70,7 @@ Run on "wrap up the day", "evening summary", "what did I do today", or the eveni
 **a. Read** today's file.
 
 **b. Pull to fill gaps** (in parallel, skip any source that isn't connected and say which in one line):
-- Calendar: today's meetings (whichever calendar connector the session has)
+- Calendar: today's meetings, using `calendar.search` from the profile's `## Connectors` (missing or failing: `📅 Calendar not connected`)
 - Slack and Teams: threads he started or replied in that look like decisions or asks
 - Owl: today's `focus-*` records (focus, time used, outcome)
 - Repo/Glue: PRs opened or merged today

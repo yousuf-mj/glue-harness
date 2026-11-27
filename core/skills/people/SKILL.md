@@ -42,10 +42,10 @@ When he asks about a person ("who is Sam", "what does Alex work on") or refers t
 4. If there's no profile, say so in one line and offer to create one.
 
 ## 4. After a meeting: check the invite
-When you create or update a profile after a meeting, and a calendar tool is available (for example Microsoft 365 `outlook_calendar_search`):
+When you create or update a profile after a meeting, and the active profile's `## Connectors` names a `calendar.search` tool:
 1. Search the last 14 days, up to now, for events whose subject or attendees match the person's name or one of their aliases. Skip cancelled events and events he declined.
 2. **Several matches:** ask which one in one question, listing each event's date, time and subject. Fill nothing until he answers.
-3. **No calendar tool, or no match:** carry on as normal and say `No invite found` in one line.
+3. **No `calendar.search` connector, or the call fails:** carry on as normal and say `📅 Calendar not connected` in one line. **No match:** carry on and say `No invite found` in one line.
 4. **One match:** write the Log line from the event without asking: `- YYYY-MM-DD · <n> min · set up by <organiser> · <what happened>`. Leave out "set up by" when he organised it (the event says he is the organiser, or the organiser's address is his). If the Log already has a line for that date and meeting (for example from the journal feed), add the length and organiser to that line instead of appending a new one.
 5. In the same reply, offer one list of the facts the invite adds that the profile doesn't have yet:
    - full name (from the attendees)
