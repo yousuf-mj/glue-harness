@@ -15,7 +15,7 @@ When the people skill creates or updates a profile after a meeting, and a calend
 - Any script change
 
 ## Evidence
-Rhys (25 Nov, 15:15) and Paul French (25 Nov, 16:00) were both intros set up by Tim. Each invite held the person's full name, job title, team and products.
+Two intro meetings on 25 Nov were both set up by the same colleague. Each invite held the person's full name, job title, team and products.
 
 ## Acceptance criteria
 - AC-03.1 After a meeting, when a calendar tool is available (for example Microsoft 365 `outlook_calendar_search`), the skill searches the last 14 days, up to now, for events whose subject or attendees match the person's name or one of their aliases.
@@ -23,11 +23,11 @@ Rhys (25 Nov, 15:15) and Paul French (25 Nov, 16:00) were both intros set up by 
 - AC-03.3 In the same reply, the skill offers one list of facts the invite adds that the profile doesn't have yet: full name (from attendees), job title (from the subject), and team, reporting line and other work facts (from the description). It writes only the items the user approves. With nothing new, it shows no list.
 - AC-03.4 With several matches, it asks which one in one question, listing each event's date, time and subject, and fills nothing until the user answers.
 - AC-03.5 With no calendar tool or no match, it carries on as today and says `No invite found` in one line.
-- AC-03.6 It never copies ratings or praise from the invite (for example "star CS guy"). The data rule applies to every fact in the list.
+- AC-03.6 It never copies ratings or praise from the invite (for example "one of our star engineers"). The data rule applies to every fact in the list.
 - AC-03.7 The rule "Don't look people up elsewhere" names the meeting invite as its one exception.
 
 ## Tests (hand check; skill prose, no script change)
-- H1 → AC-03.1 to AC-03.3, AC-03.6: in a real chat, update Paul French after the 25 Nov intro. Expect the Log line with 25 Nov, the length, "set up by Tim", and one list with full name, title, team and products, with no praise copied.
+- H1 → AC-03.1 to AC-03.3, AC-03.6: in a real chat, update a colleague after a recent intro. Expect the Log line with the date, the length, "set up by <organiser>", and one list with full name, title, team and products, with no praise copied.
 - H2 → AC-03.4, AC-03.5: a name with two invites in 14 days gets one "which one?" question; a made-up name gets `No invite found`.
 - AC-03.7: read the rule in the changed skill.
 
