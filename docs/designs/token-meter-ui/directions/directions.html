@@ -1,0 +1,168 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Token meter directions</title>
+<style>
+:root{--bg:#262624;--prompt:#30302e;--pborder:#45443f;--text:#f5f4ef;--muted:#a19f96;--dim:#3c3b37;--neutral:#bdb9ae;--amber:#e8a948;--red:#f07167;--teal:#5fb3a1;--accent:#d97757}
+*{box-sizing:border-box}
+body{margin:0;background:#141413;color:var(--text);font:13px/1.3 -apple-system,"SF Pro Text",system-ui,sans-serif;padding:28px}
+h1{font-size:15px;font-weight:600;margin:0 0 4px}
+.mood{color:var(--muted);margin:0 0 20px}
+.dir{display:none}
+.row{display:flex;gap:28px;align-items:flex-start}
+.device{background:var(--bg);border-radius:12px;padding:18px 18px 16px;border:1px solid #33322f}
+.lap{width:780px}.ph{width:375px}
+.cap{color:var(--muted);font-size:11px;margin-bottom:10px;letter-spacing:.02em}
+.msg{background:#1f1e1d;border-radius:8px;height:46px;margin-bottom:10px;opacity:.6}
+.msg.short{width:60%;margin-left:auto;background:#3a3936}
+.prompt{background:var(--prompt);border:1px solid var(--pborder);border-radius:14px;height:74px;padding:12px 14px;color:#7d7b73}
+.num{font-variant-numeric:tabular-nums}
+.a,.b,.c .txt span{white-space:nowrap}
+.mut{color:var(--muted)}
+/* ---------- A: menu-bar ---------- */
+.a{display:flex;align-items:center;gap:14px;height:28px;padding:0 4px;margin-bottom:6px;font-size:12px}
+.a .g{display:flex;align-items:center;gap:6px}
+.a .lbl{color:var(--muted);font-size:11px}
+.a .trk{width:56px;height:4px;border-radius:2px;background:var(--dim);overflow:hidden}
+.a .trk i{display:block;height:100%;border-radius:2px}
+.a .sep{width:1px;height:12px;background:#45443f}
+.a .sp{flex:1}
+.sw{width:26px;height:15px;border-radius:8px;background:var(--accent);position:relative;flex:none}
+.sw:after{content:"";position:absolute;right:2px;top:2px;width:11px;height:11px;border-radius:50%;background:#fff}
+.btnA{border:1px solid #5a5852;border-radius:6px;padding:2px 8px;font-size:11.5px;color:var(--text);background:#34332f}
+.aph{display:block;height:auto;font-size:12px}
+.aph .line{display:flex;align-items:center;gap:10px;min-height:26px}
+.aph .line2{display:flex;align-items:center;gap:10px;min-height:44px}
+.aph .btnA{min-height:36px;display:flex;align-items:center;padding:0 12px}
+/* ---------- B: LED ladder ---------- */
+.b{display:flex;align-items:center;gap:16px;height:26px;padding:0 4px;margin-bottom:6px;font:11px/1 "SF Mono",ui-monospace,Menlo,monospace}
+.b .g{display:flex;align-items:center;gap:7px}
+.b .lbl{color:var(--muted);letter-spacing:.12em}
+.cells{display:flex;gap:2px}
+.cells b{width:5px;height:11px;background:var(--dim)}
+.cells b.on.t{background:var(--teal)}.cells b.on.y{background:var(--amber)}.cells b.on.r{background:var(--red)}
+.cells b.t{background:#2f3d39}.cells b.y{background:#45392a}.cells b.r{background:#47302d}
+.b .sp{flex:1}
+.seg{display:flex;border:1px solid #5a5852}
+.seg span{padding:4px 7px;letter-spacing:.1em;color:var(--muted)}
+.seg span.on{background:var(--text);color:#1a1a19}
+.btnB{border:1px solid #5a5852;padding:4px 8px;letter-spacing:.1em;color:var(--text)}
+.bph{flex-wrap:wrap;height:auto;row-gap:8px}
+.bph .seg span,.bph .btnB{padding:13px 12px}
+/* ---------- C: pace track ---------- */
+.c{margin-bottom:8px;padding:0 2px}
+.trkC{position:relative;height:3px;border-radius:2px;background:var(--dim);margin:3px 0}
+.trkC i{position:absolute;left:0;top:0;bottom:0;border-radius:2px}
+.trkC u{position:absolute;top:-3px;width:2px;height:9px;background:var(--text);border-radius:1px}
+.c .txt{display:flex;align-items:center;gap:14px;font-size:12px;margin-top:7px}
+.c .sp{flex:1}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:6px}
+.lnk{color:var(--text);text-decoration:underline;text-underline-offset:3px;text-decoration-color:#77756d}
+.cph .txt{flex-wrap:wrap;row-gap:4px}
+.cph .ctrl{display:flex;justify-content:space-between;align-items:center;min-height:44px;margin-top:4px;font-size:12px}
+.pill{border:1px solid #5a5852;border-radius:18px;padding:0 14px;min-height:36px;display:flex;align-items:center}
+</style></head><body>
+
+<!-- ================= A ================= -->
+<section class="dir" id="a">
+<h1>A · Menu-bar meters</h1><p class="mood">Quiet, native, iStat-style. Thin rounded bars, numbers beside them, controls tucked right. Colour only past 70%.</p>
+<div class="row">
+ <div class="device lap"><div class="cap">Laptop · desktop app, chat column 780px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="a">
+   <div class="g"><span class="lbl">5h</span><span class="trk"><i style="width:78%;background:var(--amber)"></i></span><span class="num">78%</span><span class="mut num">1h 48m</span></div>
+   <div class="g"><span class="lbl">Week</span><span class="trk"><i style="width:34%;background:var(--neutral)"></i></span><span class="num">34%</span><span class="mut">Thu 09:00</span></div>
+   <span class="sp"></span>
+   <div class="g"><span class="sw"></span><span>Keep warm</span><span class="mut num">$0.003/ping · $0.04 est.</span></div>
+   <span class="sep"></span><span class="btnA">Ping once</span>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+ <div class="device ph"><div class="cap">Phone · mobile app, 375px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="a aph">
+   <div class="line"><span class="lbl">5h</span><span class="trk" style="width:70px;height:4px;border-radius:2px;background:var(--dim);overflow:hidden"><i style="width:78%;background:var(--amber)"></i></span><span class="num">78%</span><span class="mut num">1h 48m</span>
+    <span style="flex:1"></span><span class="lbl">Wk</span><span class="trk" style="width:50px;height:4px;border-radius:2px;background:var(--dim);overflow:hidden"><i style="width:34%;background:var(--neutral)"></i></span><span class="num">34%</span></div>
+   <div class="line2"><span class="sw"></span><span>Keep warm</span><span class="mut num">$0.04 est.</span><span style="flex:1"></span><span class="btnA">Ping once</span></div>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+</div></section>
+
+
+<section class="dir" id="a2">
+<h1>A · Menu-bar meters, ring gauges</h1><p class="mood">Same quiet row as A. Each gauge is a 20px ring; the white tick marks where you would be at an even pace through the window.</p>
+<div class="row">
+ <div class="device lap"><div class="cap">Laptop · desktop app, chat column 780px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="a">
+   <div class="g"><svg width="20" height="20" viewBox="0 0 20 20" style="flex:none"><circle cx="10.0" cy="10.0" r="8.5" fill="none" stroke="#3c3b37" stroke-width="3"/><circle cx="10.0" cy="10.0" r="8.5" fill="none" stroke="#e8a948" stroke-width="3" stroke-linecap="round" stroke-dasharray="41.66 53.41" transform="rotate(-90 10.0 10.0)"/><line x1="5.76" y1="13.51" x2="1.14" y2="17.33" stroke="#f5f4ef" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">5h</span><span class="num" style="color:var(--amber);font-weight:600">78%</span><span class="mut num">1h 48m</span></div>
+   <div class="g"><svg width="20" height="20" viewBox="0 0 20 20" style="flex:none"><circle cx="10.0" cy="10.0" r="8.5" fill="none" stroke="#3c3b37" stroke-width="3"/><circle cx="10.0" cy="10.0" r="8.5" fill="none" stroke="#bdb9ae" stroke-width="3" stroke-linecap="round" stroke-dasharray="18.16 53.41" transform="rotate(-90 10.0 10.0)"/><line x1="12.95" y1="14.64" x2="16.16" y2="19.71" stroke="#f5f4ef" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">Week</span><span class="num">34%</span><span class="mut">Thu 09:00</span></div>
+   <span class="sp"></span>
+   <div class="g"><span class="sw"></span><span>Keep warm</span><span class="mut num">$0.003 per ping · $0.04 so far, est.</span></div>
+   
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+ <div class="device ph"><div class="cap">Phone · mobile app, 375px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="a aph">
+   <div class="line"><svg width="24" height="24" viewBox="0 0 24 24" style="flex:none"><circle cx="12.0" cy="12.0" r="10.5" fill="none" stroke="#3c3b37" stroke-width="3"/><circle cx="12.0" cy="12.0" r="10.5" fill="none" stroke="#e8a948" stroke-width="3" stroke-linecap="round" stroke-dasharray="51.46 65.97" transform="rotate(-90 12.0 12.0)"/><line x1="6.22" y1="16.78" x2="1.60" y2="20.61" stroke="#f5f4ef" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">5h</span><span class="num" style="color:var(--amber);font-weight:600">78%</span><span class="mut num">1h 48m</span>
+    <span style="flex:1"></span><svg width="24" height="24" viewBox="0 0 24 24" style="flex:none"><circle cx="12.0" cy="12.0" r="10.5" fill="none" stroke="#3c3b37" stroke-width="3"/><circle cx="12.0" cy="12.0" r="10.5" fill="none" stroke="#bdb9ae" stroke-width="3" stroke-linecap="round" stroke-dasharray="22.43 65.97" transform="rotate(-90 12.0 12.0)"/><line x1="16.02" y1="18.33" x2="19.23" y2="23.40" stroke="#f5f4ef" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">Wk</span><span class="num">34%</span><span class="mut">Thu</span></div>
+   <div class="line2"><span class="sw"></span><span>Keep warm</span><span class="mut num">$0.04 est.</span></div>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+</div></section>
+
+<!-- ================= B ================= -->
+<section class="dir" id="b">
+<h1>B · LED ladder</h1><p class="mood">Instrument panel. Square segmented cells with fixed zones, monospace caps, hard corners. You read the zone by position, even before colour.</p>
+<div class="row">
+ <div class="device lap"><div class="cap">Laptop · desktop app, chat column 780px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="b">
+   <div class="g"><span class="lbl">5H</span><span class="cells"><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on y"></b><b class="on y"></b><b class="r"></b><b class="r"></b></span><span class="num">78%</span><span class="mut">↻1:48</span></div>
+   <div class="g"><span class="lbl">WK</span><span class="cells"><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="t"></b><b class="t"></b><b class="t"></b><b class="y"></b><b class="y"></b><b class="r"></b><b class="r"></b></span><span class="num">34%</span><span class="mut">↻THU</span></div>
+   <span class="sp"></span>
+   <span class="mut">WARM</span><span class="seg"><span class="on">AUTO</span><span>OFF</span></span><span class="mut num">$.003/P Σ$.04</span><span class="btnB">PING</span>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+ <div class="device ph"><div class="cap">Phone · mobile app, 375px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="b bph">
+   <div class="g"><span class="lbl">5H</span><span class="cells"><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="on y"></b><b class="on y"></b><b class="r"></b><b class="r"></b></span><span class="num">78%</span></div>
+   <div class="g"><span class="lbl">WK</span><span class="cells"><b class="on t"></b><b class="on t"></b><b class="on t"></b><b class="t"></b><b class="t"></b><b class="t"></b><b class="y"></b><b class="y"></b><b class="r"></b><b class="r"></b></span><span class="num">34%</span></div>
+   <div class="g" style="width:100%"><span class="seg"><span class="on">AUTO</span><span>OFF</span></span><span class="mut num" style="flex:1;padding-left:8px">Σ$.04</span><span class="btnB">PING</span></div>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+</div></section>
+
+<!-- ================= C ================= -->
+<section class="dir" id="c">
+<h1>C · Pace track (the unexpected one)</h1><p class="mood">Two hairlines across the full width of the prompt, each with a white tick for "where you'd be at an even pace". Answers "am I burning too fast?", not just "how full?".</p>
+<div class="row">
+ <div class="device lap"><div class="cap">Laptop · desktop app, chat column 780px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="c">
+   <div class="trkC"><i style="width:78%;background:var(--amber)"></i><u style="left:64%"></u></div>
+   <div class="trkC"><i style="width:34%;background:var(--neutral)"></i><u style="left:41%"></u></div>
+   <div class="txt"><span><span class="mut">5h</span> <b class="num" style="color:var(--amber);font-weight:600">78%</b> <span class="mut num">· 14 ahead · 1h 48m</span></span>
+    <span><span class="mut">Week</span> <b class="num" style="font-weight:600">34%</b> <span class="mut">· on pace · Thu</span></span><span class="sp"></span>
+    <span><span class="dot"></span>Keeping warm <span class="mut num">· $0.04 est.</span> · </span><span class="pill" style="min-height:22px;padding:0 10px;font-size:11.5px">Ping once</span><span class="pill" style="min-height:22px;padding:0 10px;font-size:11.5px">Stop</span></div>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+ <div class="device ph"><div class="cap">Phone · mobile app, 375px</div>
+  <div class="msg short"></div><div class="msg"></div>
+  <div class="c cph">
+   <div class="trkC"><i style="width:78%;background:var(--amber)"></i><u style="left:64%"></u></div>
+   <div class="trkC"><i style="width:34%;background:var(--neutral)"></i><u style="left:41%"></u></div>
+   <div class="txt"><span><span class="mut">5h</span> <b class="num" style="color:var(--amber)">78%</b> <span class="mut">· 14 ahead</span></span><span><span class="mut">Week</span> <b class="num">34%</b> <span class="mut">· on pace</span></span></div>
+   <div class="ctrl"><span><span class="dot"></span>Keeping warm <span class="mut">· $0.04 est.</span></span><span class="pill">Ping once</span></div>
+  </div>
+  <div class="prompt">Reply to Claude…</div>
+ </div>
+</div></section>
+<script>document.getElementById((location.hash||'#a').slice(1)).style.display='block'</script>
+</body></html>
