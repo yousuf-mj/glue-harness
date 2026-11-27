@@ -9,7 +9,7 @@ One row per screen. `current/` holds the one current design for each screen. Old
 
 | Screen | Area | File | Status | Spec / saga | Last checked | Note |
 |---|---|---|---|---|---|---|
-| Token meter bar (all states, laptop and phone) | Claude app (mod) | `current/claude-app/token-meter-bar.png` | 🟡 In progress | saga token-meter (ui-design done; spec not written) | 2026-11-27 | Not built yet. Working folder: `token-meter-ui/` |
+| Token meter bar (all states, laptop and phone) | Claude app (mod) | `current/claude-app/token-meter-bar.png` | 🟢 Live | spec 005 (`specs/token-meter/005-token-meter.md`) | 2026-11-27 | Built in `mods/token-meter/`. Checked in the desktop app by Yousuf. Copy changed from the design: "Ping failed · retrying" (was "retrying in 1 min") and a new "waiting for your next reply" state. Working folder: `token-meter-ui/` |
 
 ## Not screen designs (left out of the register)
 - `work-harness.md`: design doc for the harness

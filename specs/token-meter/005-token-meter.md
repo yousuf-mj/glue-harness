@@ -1,6 +1,6 @@
 # 005 · Token meter mod
 
-Status: in-progress
+Status: done
 Route: feature
 Depends on: none
 
