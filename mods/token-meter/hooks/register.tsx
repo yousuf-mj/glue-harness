@@ -27,7 +27,7 @@ const WINDOW_MS = { five_hour: 300 * MIN, seven_day: 7 * 24 * 60 * MIN }
 const CACHE_MS = 5 * MIN // the main loop reports no cache lifetime; spec 005 fallback
 const PING_LEAD_MS = 30_000
 const IDLE_STOP_MS = 60 * MIN
-const RETRY_MS = MIN
+const RETRY_MS = 15_000 // inside the 30 s lead, so a retry still finds the cache warm
 const PAUSE_AT = 95
 const TICK_MS = 5_000
 const PERSON_ORIGINS = new Set(['composer', 'bridge', 'sdk'])
@@ -42,6 +42,7 @@ const FRESH: Warm = {
   failedAt: null,
   retryAt: null,
   isIdleStopped: false,
+  isTurnRunning: false,
   pings: { count: 0, lastUsd: 0, totalUsd: 0 },
 }
 
@@ -156,8 +157,10 @@ export const warmText = (w: Warm, now: number, hasReading: boolean, isShort = fa
   const off = `off in ${offIn(w, now)} min`
   if (w.isPinging) return { text: isShort ? 'pinging…' : `pinging… · ${off}`, isError: false }
   if (w.failedAt !== null) {
-    return { text: isShort ? 'Ping failed' : `Ping failed · retrying in 1 min · ${off}`, isError: true }
+    const more = w.retryAt !== null ? 'retrying' : 'waiting for your next reply'
+    return { text: isShort ? 'Ping failed' : `Ping failed · ${more} · ${off}`, isError: true }
   }
+  if (isCold(w, now)) return { text: isShort ? '' : `waiting for your next reply · ${off}`, isError: false }
   if (isShort || w.pings.count === 0) return { text: isShort ? '' : off, isError: false }
   return { text: `${usd(w.pings.lastUsd)} per ping · ${usd(w.pings.totalUsd)} so far, est. · ${off}`, isError: false }
 }
@@ -169,10 +172,18 @@ export const labelOf = (w: Warm, now: number) =>
       ? 'Keep warm, paused at the 5-hour limit'
       : 'Keep warm, off'
 
+// The cache is cold once its lifetime has passed, or when there is nothing to keep warm yet.
+// Pinging a cold cache rewrites the whole conversation, so the mod waits for the next reply instead.
+export const isCold = (w: Warm, now: number) => w.lastRequestAt === 0 || now >= w.lastRequestAt + CACHE_MS
+
 const fiveHour = (all: Reading[]) => all.find(r => r.kind === 'five_hour')?.percentUsed ?? null
 
 let timer: { cancel: () => void } | null = null
-let isTurnRunning = false
+
+// A hot reload stops the interval but keeps $.state, so any hook may restart it.
+function ensureTimer($: any) {
+  if (!timer) timer = $.clock.every(TICK_MS, () => void check($))
+}
 
 async function ping($: any, isRetry: boolean) {
   await update($, warm, (w: Warm) => ({ ...w, isPinging: true, retryAt: isRetry ? null : w.retryAt }))
@@ -191,12 +202,12 @@ async function ping($: any, isRetry: boolean) {
       pings: { count: w.pings.count + 1, lastUsd: cost, totalUsd: w.pings.totalUsd + cost },
     }))
   } else if (r.reason === 'nothing-to-fork') {
-    await update($, warm, (w: Warm) => ({ ...w, isPinging: false, lastRequestAt: now }))
+    await update($, warm, (w: Warm) => ({ ...w, isPinging: false, lastRequestAt: 0 }))
   } else {
+    // First failure: one retry. Failed retry: stop and wait for the next reply.
     await update($, warm, (w: Warm) => ({
       ...w,
       isPinging: false,
-      lastRequestAt: now,
       failedAt: now,
       retryAt: isRetry ? null : now + RETRY_MS,
     }))
@@ -212,13 +223,14 @@ async function check($: any) {
     await update($, warm, (x: Warm): Warm => ({ ...x, mode: 'off', isIdleStopped: true, failedAt: null, retryAt: null }))
     return
   }
-  if (w.mode !== 'on' || isTurnRunning) return
-  if (w.retryAt !== null && now >= w.retryAt) return ping($, true)
-  if (w.retryAt === null && now >= w.lastRequestAt + CACHE_MS - PING_LEAD_MS) return ping($, false)
+  if (w.mode !== 'on' || w.isTurnRunning || isCold(w, now)) return
+  if (w.retryAt !== null) return now >= w.retryAt ? ping($, true) : undefined
+  if (w.failedAt === null && now >= w.lastRequestAt + CACHE_MS - PING_LEAD_MS) return ping($, false)
 }
 
-async function flipWarm($: any, all: Reading[], hasReading: boolean) {
-  if (!hasReading) return
+async function flipWarm($: any) {
+  const all = await read($, readings)
+  if (all.length === 0) return
   const t = await $.clock.now()
   await update($, warm, (x: Warm): Warm => {
     if (x.mode !== 'off') return { ...x, mode: 'off', failedAt: null, retryAt: null }
@@ -235,10 +247,10 @@ async function flipWarm($: any, all: Reading[], hasReading: boolean) {
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     timer?.cancel()
-    isTurnRunning = false
+    timer = null
     await update($, warm, () => FRESH)
     await update($, readings, () => [])
-    timer = $.clock.every(TICK_MS, () => void check($))
+    ensureTimer($)
     return next(e)
   })
 
@@ -246,6 +258,7 @@ export const register: Register = on => {
     const all = e.rateLimits
       .filter(r => r.kind === 'five_hour' || r.kind === 'seven_day')
       .map(r => ({ kind: r.kind as Reading['kind'], percentUsed: r.percentUsed, resetsAt: r.resetsAt }))
+    ensureTimer($)
     await update($, readings, () => all)
     const five = fiveHour(all)
     await update($, warm, (w: Warm): Warm =>
@@ -267,15 +280,20 @@ export const register: Register = on => {
   })
 
   on('turn.start', async ($, e, next) => {
-    if (!e.agentId) isTurnRunning = true
+    if (!e.agentId) await update($, warm, (w: Warm) => ({ ...w, isTurnRunning: true }))
     return next(e)
   })
 
   on('turn.complete', async ($, e, next) => {
     if (!e.agentId) {
-      isTurnRunning = false
       const now = await $.clock.now()
-      await update($, warm, w => ({ ...w, lastRequestAt: now }))
+      await update($, warm, (w: Warm) => ({
+        ...w,
+        isTurnRunning: false,
+        lastRequestAt: now,
+        failedAt: null,
+        retryAt: null,
+      }))
     }
     return next(e)
   })
@@ -292,7 +310,8 @@ export const register: Register = on => {
     const els = $.ui.resolve(e) as any
     const { Box, Text, Button } = els
 
-    const press = () => flipWarm($, all, hasReading)
+    ensureTimer($)
+    const press = () => flipWarm($)
 
     if (e.surface === 'terminal' || !els.Svg) {
       const part = (label: string, g: Gauge) => {
@@ -355,7 +374,9 @@ export const register: Register = on => {
       const right =
         w.mode === 'on'
           ? w.failedAt !== null
-            ? 'retry in 1 min'
+            ? w.retryAt !== null
+              ? 'retrying'
+              : 'waits for reply'
             : `off in ${offIn(w, now)} min`
           : w.mode === 'paused'
             ? 'at 5h limit'

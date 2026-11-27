@@ -155,6 +155,21 @@ test('T4 · AC-05.4: pings once 30 s before the cache lapses, never mid-turn, of
   expect(await label($)).toBe('Keep warm, off')
 })
 
+test('T4b · AC-05.4: a cache that has already expired is not pinged; the mod waits for the next reply', async ($, on) => {
+  const { clock, forks } = world($, on)
+  await start($)
+  await measure($, [reading('five_hour', 20, 10, clock.now())])
+  await turn($)
+  await clock.advance(10 * MIN)
+  await pressToggle($)
+  await clock.advance(10 * MIN)
+  expect(forks.length).toBe(0)
+  expect(await hasText($, /^waiting for your next reply · off in \d+ min$/)).toBeDefined()
+  await turn($, 't2')
+  await clock.advance(4 * MIN + 30_000)
+  expect(forks.length).toBe(1)
+})
+
 test('T5 · AC-05.5: turns off 60 min after the last prompt; a new prompt restarts the hour', async ($, on) => {
   const { clock } = world($, on)
   await start($)
@@ -187,14 +202,19 @@ test('T6 · AC-05.6: pauses at 95% of the 5-hour window, resumes below, press wh
   await clock.advance(10 * MIN)
   expect(forks.length).toBe(0)
   await measure($, [reading('five_hour', 10, 2, clock.now())])
-  await clock.advance(5_000)
+  expect(await label($)).toMatch(/^Keep warm, on/)
+  // Resumed, but the cache went cold during the pause: no ping until the next reply.
+  await clock.advance(5 * MIN)
+  expect(forks.length).toBe(0)
+  await turn($, 't2')
+  await clock.advance(4 * MIN + 30_000)
   expect(forks.length).toBe(1)
   await measure($, [reading('five_hour', 96, 90, clock.now())])
   await pressToggle($)
   expect(await label($)).toBe('Keep warm, off')
 })
 
-test('T7 · AC-05.7: cost per ping and total; a failed ping retries exactly once after 1 min', async ($, on) => {
+test('T7 · AC-05.7: cost per ping and total; a failed ping retries once, then waits for the next reply', async ($, on) => {
   let isFailing = false
   const { clock, forks } = world($, on, {
     fork: () => (isFailing ? { isAnswered: false, reason: 'api-error', status: 500, error: 'server_error', usage: OK.usage } : OK),
@@ -209,12 +229,34 @@ test('T7 · AC-05.7: cost per ping and total; a failed ping retries exactly once
   isFailing = true
   await clock.advance(4 * MIN + 30_000)
   expect(forks.length).toBe(2)
-  const failed = await hasText($, /^Ping failed · retrying in 1 min/)
+  const failed = await hasText($, /^Ping failed · retrying · off in/)
   expect(failed?.props.color).toBe(RED)
-  await clock.advance(MIN)
+  await clock.advance(15_000)
   expect(forks.length).toBe(3)
-  await clock.advance(MIN)
+  expect(await hasText($, /^Ping failed · waiting for your next reply/)).toBeDefined()
+  await clock.advance(10 * MIN)
   expect(forks.length).toBe(3)
+  isFailing = false
+  await turn($, 't2')
+  await clock.advance(4 * MIN + 30_000)
+  expect(forks.length).toBe(4)
+})
+
+test('T7b · AC-05.7: nothing to fork yet means no ping until the next reply', async ($, on) => {
+  let isEmpty = true
+  const { clock, forks } = world($, on, { fork: () => (isEmpty ? { isAnswered: false, reason: 'nothing-to-fork' } : OK) })
+  await start($)
+  await measure($, [reading('five_hour', 20, 10, clock.now())])
+  await turn($)
+  await pressToggle($)
+  await clock.advance(4 * MIN + 30_000)
+  expect(forks.length).toBe(1)
+  await clock.advance(10 * MIN)
+  expect(forks.length).toBe(1)
+  isEmpty = false
+  await turn($, 't2')
+  await clock.advance(4 * MIN + 30_000)
+  expect(forks.length).toBe(2)
 })
 
 test('T8 · AC-05.8: state in the toggle label, sentence alt on rings, one-line terminal text', async ($, on) => {

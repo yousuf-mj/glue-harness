@@ -9,6 +9,7 @@ export type Warm = {
   failedAt: number | null
   retryAt: number | null
   isIdleStopped: boolean
+  isTurnRunning: boolean
   pings: Pings
 }
 
