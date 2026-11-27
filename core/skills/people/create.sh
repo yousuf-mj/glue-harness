@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# people-scripts-version: 0.1.7
+# people-scripts-version: 0.1.8
 # Create a people profile from the template. Usage: create.sh <glue> "<Full Name>"
 # Spec 001: AC-01.2 (slug file, never overwrite), AC-01.3 (copy _template.md)
 # Exit: 0 created, 1 exists, 2 bad name.

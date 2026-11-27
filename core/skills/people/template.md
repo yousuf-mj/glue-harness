@@ -24,6 +24,9 @@ aliases: [<first name>]
 ## Agreed adjustments
 -
 
+## Working relationships
+-
+
 ## How I can help
 -
 

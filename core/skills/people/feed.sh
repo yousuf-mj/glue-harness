@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# people-scripts-version: 0.1.7
+# people-scripts-version: 0.1.8
 # Feed a journal meet line into matching people profiles.
 # Usage: feed.sh <glue> <YYYY-MM-DD> "<text>"     (text "-" = read it from stdin)
 #        feed.sh --check <glue> "<text>"          (report only, writes nothing; AC-01.7)

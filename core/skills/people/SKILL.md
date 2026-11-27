@@ -17,14 +17,16 @@ Write every profile as if the person will read it. A colleague can ask for the n
 
 **Never record:** health, private life, family, beliefs, or guesses about personality or mood.
 
-When the user gives one of these, record only the agreed adjustment or the work fact, and say in one line what you left out:
-- "has a back problem, can't do long meetings" → Agreed adjustments: "prefers meetings under 45 minutes" · 🔒 Left out: the health detail.
+**Do record** what the person said about how they feel about work, in their own words, and say who said it: "Says it's hard to raise problems".
 
-Record what he observed or was told about work: "likes data before a decision", not "seems anxious".
+**Working relationships:** record what the person said about working with named colleagues, credited to them: "Says X prefers his own way". Never record character judgements as fact, and never record the other person's private life.
+
+When the user gives something you must not record, record only the agreed adjustment or the work fact, and say in one line what you left out:
+- "has a back problem, can't do long meetings" → Agreed adjustments: "prefers meetings under 45 minutes" · 🔒 Left out: the health detail.
 
 ## 1. Create a profile
 1. Run `bash "$P/create.sh" "$G" "<Full Name>"`. It copies the template to `_template.md` on first run and never overwrites an existing profile (it prints `exists:` instead; then update that file). It refuses names containing `/` or starting with `.` or `_` (`bad name:`).
-2. Fill only what the user said, section by section. Leave every other section as `-`. Don't look people up elsewhere and don't guess. The one exception is the meeting invite (section 4), and only for facts the user approves.
+2. Fill only what the user said, section by section. What the person said about working with named colleagues goes under **Working relationships**, credited to them (see the data rule). Leave every other section as `-`. Don't look people up elsewhere and don't guess. The one exception is the meeting invite (section 4), and only for facts the user approves.
 3. Add other names he uses for them (nicknames, initials) to `aliases`, lowercase.
 4. Reply in one line: `🤝 Created: <Name> (<sections filled>)`.
 

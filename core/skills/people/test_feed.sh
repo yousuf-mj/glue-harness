@@ -16,7 +16,7 @@ f="$g/resources/people/sam-smith.md"
 check "T3 create makes slug file" "$([ -f "$f" ] && echo yes)" "yes"
 check "T3 name filled" "$(sed -n 's/^name: //p' "$f")" "Sam Smith"
 check "T3 first name is an alias" "$(sed -n 's/^aliases: //p' "$f")" "[sam]"
-check "T3 empty sections show -" "$(grep -c '^-$' "$f")" "8"
+check "T3 empty sections show -" "$(grep -c '^-$' "$f")" "9"
 check "T3 _template.md copied" "$([ -f "$g/resources/people/_template.md" ] && echo yes)" "yes"
 echo "edited" >> "$f"
 out="$(bash "$here/create.sh" "$g" "Sam Smith")"; rc=$?
