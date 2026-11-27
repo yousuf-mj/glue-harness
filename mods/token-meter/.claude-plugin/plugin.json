@@ -1,0 +1,1 @@
+{ "name": "token-meter", "version": "0.1.0", "description": "Thin dark bar above the prompt: 5-hour and weekly usage rings with a pace marker, and a keep-warm toggle for the prompt cache.", "types": "./types/index.d.ts" }
