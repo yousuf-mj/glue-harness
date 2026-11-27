@@ -40,3 +40,6 @@ Each profile skill has a `## Connectors` section that names the mail and calenda
 | `mail.draft` | Tool that creates a draft (never sends) |
 
 A missing key means not connected. Skills then carry on and say `📅 Calendar not connected` or `✉️ Mail not connected` in one line.
+
+## Mods
+- `mods/token-meter/`: Claude app mod showing usage limits and a keep-warm toggle. Load it with `claude --plugin-dir mods/token-meter`.
