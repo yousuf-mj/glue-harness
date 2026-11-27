@@ -1,6 +1,6 @@
 # 003 · Fill people profiles from the meeting invite
 
-Status: approved
+Status: done
 Route: feature
 Depends on: 001 (people skill)
 
@@ -19,7 +19,7 @@ Rhys (25 Nov, 15:15) and Paul French (25 Nov, 16:00) were both intros set up by 
 
 ## Acceptance criteria
 - AC-03.1 After a meeting, when a calendar tool is available (for example Microsoft 365 `outlook_calendar_search`), the skill searches the last 14 days, up to now, for events whose subject or attendees match the person's name or one of their aliases.
-- AC-03.2 With one match, the Log line takes the event's date, length in minutes and organiser without asking: `- YYYY-MM-DD · <n> min · set up by <organiser> · <what happened>`. The "set up by" part is left out when the user organised it.
+- AC-03.2 With one match, the Log line takes the event's date, length in minutes and organiser without asking: `- YYYY-MM-DD · <n> min · set up by <organiser> · <what happened>`. The "set up by" part is left out when the user organised it. If the Log already has a line for that date and meeting (for example from the journal feed), the length and organiser are added to that line instead of a new one. (Corrected during build.)
 - AC-03.3 In the same reply, the skill offers one list of facts the invite adds that the profile doesn't have yet: full name (from attendees), job title (from the subject), and team, reporting line and other work facts (from the description). It writes only the items the user approves. With nothing new, it shows no list.
 - AC-03.4 With several matches, it asks which one in one question, listing each event's date, time and subject, and fills nothing until the user answers.
 - AC-03.5 With no calendar tool or no match, it carries on as today and says `No invite found` in one line.

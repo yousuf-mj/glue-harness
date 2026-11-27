@@ -36,3 +36,6 @@
 - New `voice/yousuf.md` from a voice interview, and `tone/casual.md`, `tone/neutral.md`, `tone/formal.md`
 - Edits to drafts written in my voice are offered as new voice-file lines
 - harness-work 0.1.4: in the Claude app, ask once for access to `~/glue` when it isn't connected, instead of skipping recording silently
+
+## 0.1.10 (2026-11-26)
+- People skill: after a meeting, finds the invite in the calendar (last 14 days) when a calendar tool is available. Date, length and organiser go in the Log line; full name, title, team and other work facts are offered in one list and added only when approved. No ratings or praise are copied (spec 003)
